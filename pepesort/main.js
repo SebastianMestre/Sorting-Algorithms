@@ -136,7 +136,7 @@ function weirdsort (arr, begin, end) {
 
 function main()
 {
-	const n = 64;
+	const n = 512;
 	const inv = n;
     let arr = new Array(n);
 
