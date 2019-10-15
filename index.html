@@ -1,6 +1,9 @@
 <html>
 	<head>
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto&display=swap" rel="stylesheet">
 		<style>
+			h1, h2 {
+				font-family: 'Fira Sans', sans-serif;
 			.expand-on-hover {
 				position: relative;
 			}
@@ -9,17 +12,20 @@
 			}
 			.expand-on-hover-card {
 				position: absolute;
-				top: 0;
-				left: 3em;
+				top: 1.5em;
+				left: -3em;
 				opacity: 0;
 				transition: opacity 0.3s;
 				width: 30em;
 				background: white;
 				padding: 1em;
-				box-shadow: 0 0.3em 1em -0.5em black;
+				box-shadow: 0 1em 2.5em -0.5em rgba(0,0,0,0.2);
 				border-radius: 2px;
-				border: 1px solid #bbb;
+				border: 1px solid #eee;
 				pointer-events: none;
+				font-size: 10pt;
+				font-family: 'Roboto', sans-serif;
+				line-height: 1.6em;
 			}
 		</style>
 	</head>
@@ -34,7 +40,6 @@
 			<li><a href="median/index.html">median of array</a></li>
 			<li><a href="pepesort/index.html">a slightly different in-place mergesort</a></li>
 			<li>
-				<a href="quicksort/index.html">quicksort</a>
 				<span class="expand-on-hover">
 					...
 					<div class="expand-on-hover-card">
