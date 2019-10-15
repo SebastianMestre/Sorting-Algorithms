@@ -1,5 +1,20 @@
 <html>
 	<head>
+		<script>
+			expand-on-hover {
+				position: relative;
+			}
+			expand-on-hover:hover expand-on-hover-card {
+				opacity: 1;
+			}
+			expand-on-hover-card {
+				position: absolute;
+				top: 0;
+				left: 3em;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+		</script>
 	</head>
 	<body>
 		<h1>Sorting Algorithms</h1>
@@ -11,7 +26,22 @@
 			<li><a href="maybesort/index.html">A really bad randomized sorting algorithm</a></li>
 			<li><a href="median/index.html">median of array</a></li>
 			<li><a href="pepesort/index.html">a slightly different in-place mergesort</a></li>
-			<li><a href="quicksort/index.html">quicksort</a></li>
+			<li>
+				<a href="quicksort/index.html">quicksort</a>
+				<span class="expand-on-hover">
+					...
+					<div class="expand-on-hover-card">
+						Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. The steps are:
+
+						<ol>
+							<li> Pick an element, called a pivot, from the array. </li>
+							<li> Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it. </li>
+							<li> Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values. </li>
+
+						</ol>
+					</div>
+				</span>
+			</li>
 			<li><a href="shellsort/index.html">shellsort</a></li>
 			<li><a href="smoothsort/index.html">smoothsort</a></li>
 			<li><a href="weavesort/index.html">weavesort</a></li>
