@@ -38,22 +38,10 @@ function sort(arr,a,b) {
 
 function main()
 {
-	const n = 1024;
-	const inv = n;
-    let arr = new Array(n);
+	const n = 256;
 
-	for (let i = 0; i < n; ++i) {
-		arr[i] = 1-(i)/n;
-	}
-
-	for(let i = 0; i < inv; ++i) {
-		let a = (Math.random()*n)|0;
-		a = i;
-		let b = (Math.random()*n)|0;
-		let temp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = temp;
-	}
+	let arr = make_array(n);
+	shuffle(arr);
 
 	init(arr);
 	sort(arr, 0, n);

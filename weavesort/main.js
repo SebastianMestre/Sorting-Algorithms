@@ -66,23 +66,10 @@ const step = 1;
 const delay = 0;
 function main()
 {
-	const n = 256+512;
-	const inv = n;
-    let arr = new Array(n);
+	const n = 256;
 
-	const logi = x => 1 / (1+Math.exp(-x));
-
-	for (let i = 0; i < n; ++i) {
-		arr[i] = logi((i/n-0.5)*10);
-	}
-    
-	for(let i = 0; i < inv; ++i) {
-		let a = i;//(Math.random()*n)|0;
-		let b = (Math.random()*n)|0;
-		let temp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = temp;
-	}
+	let arr = make_array(n);
+	shuffle(arr);
 
 	init(arr);
     weavesort(arr, 0, n);

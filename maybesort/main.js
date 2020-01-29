@@ -28,10 +28,6 @@ function sort(arr, begin, end) {
 	sort(arr, m, end);
 }
 
-function clamp(x,low,high){
-	return Math.max(low,Math.min(high,x));
-}
-
 function isort (arr, begin, end) {
 	for(let i = begin; i < end; ++i){
 		for(let j = i; j > begin; --j){
@@ -46,26 +42,9 @@ function isort (arr, begin, end) {
 function main()
 {
 	const n = 256;
-	const inv = n;
-    let arr = new Array(n);
 
-	for (let i = 0; i < n; ++i) {
-		arr[i] = (i+1)/n;
-	}
-
-	for(let i = 0; i < inv; ++i) {
-		let a = (Math.random()*n)|0;
-		let b = (Math.random()*n)|0;
-		
-		a = (i*n/inv)|0;
-		a = i;
-		let r = (Math.random()*50)|0;
-//		b = clamp((a+r-25), 0, n-1);
-		
-		let temp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = temp;
-	}
+	let arr = make_array(n);
+	shuffle(arr);
 	
 	init(arr);
 	sort(arr, 0, n);

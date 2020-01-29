@@ -20,21 +20,10 @@ function clamp(x,low,high){
 
 function main() {
 	const n = 512;
-    const inv = n;
-    let arr = new Array(n);
 
-	for(let i = 0; i < n; ++i)
-		arr[i] = (n-i)/n;
+	let arr = make_array(n);
+	shuffle(arr);
 
-	for(let i = 0; i < inv; ++i) {
-        a = i;
-		let b = (Math.random()*n)|0;
-		
-		let temp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = temp;
-    }
-	
 	init(arr);
     sort(arr, 0, n);
 	init(arr);

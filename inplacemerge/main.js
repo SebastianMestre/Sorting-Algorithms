@@ -106,36 +106,17 @@ function sort(arr, from, to) {
 	merge(arr, from, middle, to, middle-from, to - middle); 
 }
 
-
-function is_sorted(arr, begin, end) {
-	for(let i = begin+1; i < end; ++i){
-		if(arr[i] < arr[i-1]) return false;
-	}
-		return true;
-}
-
 // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
 
 const delay = 0;
 const step = 1;
 function main()
 {
-	const n = (256+512);
-	const inv = n;
-    let arr = new Array(n);
+	const n = 256;
 
-	for (let i = 0; i < n; ++i) {
-		arr[i] = (i+1)/n;
-	}
+    let arr = make_array(n);
+	shuffle(arr);
 
-	for(let i = 0; i < inv; ++i) {
-		let a = i;
-		let b = (Math.random()*n)|0;
-		let temp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = temp;
-	}
-    
 	init(arr);
 	sort(arr, 0, n);
 	init(arr);

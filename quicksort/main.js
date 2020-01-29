@@ -39,7 +39,6 @@ function sort (arr, begin, end) {
 function main()
 {
 	const n = 256;
-    const inv = n;
 
 	let arr = make_array(n);
 	shuffle(arr);

@@ -10,7 +10,6 @@ function medianofthree (arr, a, b, c) {
         exchange(arr, a, b);
 }
 
-// Gapsort
 function sort (arr, begin, end) {
     if(begin == end) return;
     let n = end - begin;
@@ -24,34 +23,13 @@ function sort (arr, begin, end) {
 
 }
 
-function clamp(x,low,high){
-	return Math.max(low,Math.min(high,x));
-}
-
 function main()
 {
-	const n = 3**5;
-    const inv = n;
-    let arr = new Array(n);
+	const n = 256;
 
-	for (let i = 0; i < n; ++i) {
-		arr[i] = (i+1)/n;
-	}
+	let arr = make_array(n);
+	shuffle(arr);
 
-	for(let i = 0; i < inv; ++i) {
-		let a = (Math.random()*n)|0;
-		let b = (Math.random()*n)|0;
-		
-        //a = (i*n/inv)|0;
-        a = i;
-		let r = (Math.random()*50)|0;
-//		b = clamp((a+r-25), 0, n-1);
-		
-		let temp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = temp;
-    }
-	
 	init(arr);
     sort(arr, 0, n);
 	init(arr);
