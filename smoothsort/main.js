@@ -1,5 +1,5 @@
-const step = 5;
-const delay = 5;
+const step = 1;
+const delay = 0;
 
 function num (n){
 	let a = 1;

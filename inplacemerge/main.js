@@ -1,3 +1,5 @@
+const step = 1;
+const delay = 0;
 
 function lower (arr, from, to, val) { 
 	let len = to - from;
@@ -108,8 +110,6 @@ function sort(arr, from, to) {
 
 // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
 
-const delay = 0;
-const step = 1;
 function main()
 {
 	const n = 256;

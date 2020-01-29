@@ -1,3 +1,6 @@
+const step = 1;
+const delay = 0;
+
 function sort(arr, begin, end) {
 	if(begin == end) return;
 	for (let i = begin; i != end; ++i)
@@ -12,9 +15,6 @@ function sort(arr, begin, end) {
 function clamp(x,low,high){
 	return Math.max(low,Math.min(high,x));
 }
-
-const delay = 10;
-const step = 1;
 
 function main()
 {

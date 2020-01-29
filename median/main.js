@@ -1,5 +1,5 @@
 const step = 1;
-const delay = 1;
+const delay = 0;
 
 function medianofthree (arr, a, b, c) {
     if(compare(arr, a, b) > 0)

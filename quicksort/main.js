@@ -1,5 +1,5 @@
 const step = 1;
-const delay = 10;
+const delay = 0;
 
 function insertion_sort(arr, begin, end) {
     for (let i = begin; i < end; ++i){

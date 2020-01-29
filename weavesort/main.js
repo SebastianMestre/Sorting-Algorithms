@@ -1,3 +1,5 @@
+const step = 1;
+const delay = 0;
 
 function reverse(arr, begin, end) {
 	for(let i = begin, j = end-1; i < j; ++i, --j) {
@@ -62,8 +64,6 @@ function weavesort(arr, begin, end) {
 	insertionsort(arr, begin, end);
 }
 
-const step = 1;
-const delay = 0;
 function main()
 {
 	const n = 256;
