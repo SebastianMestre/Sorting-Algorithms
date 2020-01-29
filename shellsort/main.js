@@ -19,7 +19,7 @@ function clamp(x,low,high){
 }
 
 function main() {
-	const n = 512;
+	const n = 256;
 
 	let arr = make_array(n);
 	shuffle(arr);
