@@ -3,7 +3,7 @@ const delay = 10;
 
 function insertion_sort(arr, begin, end) {
     for (let i = begin; i < end; ++i){
-		for (let j = i; j > begin && arr[j] < arr[j-1]; --j)
+		for (let j = i; j > begin && compare(arr, j, j-1) <0; --j)
 			exchange(arr,j,j-1);
     }
 }
