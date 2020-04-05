@@ -11,17 +11,22 @@ function insertion_sort(arr, begin, end) {
 function partition(arr, begin, end){
 	if(begin == end) return;
 
-	let j = begin;
-	for(let i = begin+1; i != end; ++i){
-		if(compare(arr, begin, i)>0) {
-			j += 1;
-			exchange(arr, j, i);
+	let l = begin+1;
+	let r = end;
+
+	while(l<r){
+		while(l < r && compare(arr, l  , begin)<=0) l += 1;
+		while(l < r && compare(arr, r-1, begin)> 0) r -= 1;
+		if(l < r) {
+			exchange(arr, l, r-1);
+			l += 1;
+			r -= 1;
 		}
 	}
 
-	exchange(arr, begin, j);
+	exchange(arr, begin, l-1);
 
-	return j;
+	return l-1;
 }
 
 // Quicksort
