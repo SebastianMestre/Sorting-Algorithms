@@ -2,14 +2,16 @@ const step = 1;
 const delay = 0;
 
 function sort(arr, begin, end) {
-	if(begin == end) return;
-	for (let i = begin; i != end; ++i)
-		if (compare(arr,i,begin)<0)
-			exchange(arr, i, begin);
-	for (let i = end-1; i!=begin-1; --i)
-		if (compare(arr, i, end-1)>0)
-			exchange(arr, i, end-1);
-	sort(arr, begin+1, end-1);
+	if(begin >= end) return;
+	for (let j = begin; j != end; ++j){
+		let min_idx = j;
+		for (let i = j; i != end; ++i){
+			if (compare(arr,i,min_idx)<0){
+				min_idx = i;
+			}
+		}
+		exchange(arr, j, min_idx);
+	}
 }
 
 function clamp(x,low,high){
