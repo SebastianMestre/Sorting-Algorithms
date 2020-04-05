@@ -1,31 +1,16 @@
 const step = 1;
 const delay = 0;
 
-function reverse(arr, begin, end) {
-	for(let i = begin, j = end-1; i < j; ++i, --j) {
-		exchange(arr, i, j);
-	}
-}
-
-function rotate(arr, begin, mid, end) {
-	reverse(arr, begin, mid);
-	reverse(arr, mid, end);
-	reverse(arr, begin, end);
-	return begin + (end - mid);
-}
-
-function optimized_weave(arr, begin, pivot, end) {
+function weave(arr, begin, pivot, end) {
     if (end-begin <= 2) return;
-	if (compare(arr, pivot-1, pivot)<0) return;
-
 
     let m1 = begin + (((pivot - begin)/2)|0);
     let m2 = pivot + (((end - pivot)/2)|0);
     
     let r = rotate(arr, m1, pivot, m2);
    
-    optimized_weave(arr, begin, m1, r);
-    optimized_weave(arr, r, m2, end);
+    weave(arr, begin, m1, r);
+    weave(arr, r, m2, end);
 }
 
 function insertionsort(arr, begin, end) {
@@ -41,25 +26,16 @@ function insertionsort(arr, begin, end) {
 }
 
 function weavesort(arr, begin, end) {
-    if (end - begin < 32) {
+    if (end - begin <= 8) {
 		insertionsort(arr,begin,end);
+		return;
 	}
 		
-	if (end - begin < 2)
-        return;
-    
-    if (end - begin == 2){
-		if(compare(arr, begin+1, begin)<0){
-			exchange(arr, begin+1, begin);
-		}
-        return;
-    }
-    
     let mid = begin+(((end-begin)/2)|0);
     weavesort(arr,begin, mid);
     weavesort(arr,mid, end);
 
-    optimized_weave(arr,begin, mid, end);
+    weave(arr,begin, mid, end);
     
 	insertionsort(arr, begin, end);
 }
