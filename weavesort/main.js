@@ -50,6 +50,8 @@ function main()
 	init(arr);
     weavesort(arr, 0, n);
 	init(arr);
+
+	playAnim();
 		
 	return 0;
 }

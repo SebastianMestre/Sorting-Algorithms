@@ -52,6 +52,8 @@ function main()
 	sort(arr, 0, n);
 	init(arr);
 
+	playAnim();
+
 	return 0;
 }
 
