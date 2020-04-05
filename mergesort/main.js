@@ -30,7 +30,7 @@ function sort(arr,a,b) {
 			exchange(arr,a+1,a);
 		return;
 	}
-	let mid = a+((b-a)>>1)
+	let mid = a+((b-a)>>1);
 	sort(arr,a,mid);
 	sort(arr,mid,b);
 	merge(arr,a,mid,b);
