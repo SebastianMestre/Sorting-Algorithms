@@ -1,44 +1,16 @@
 const step = 1;
 const delay = 0;
 
-function insertion_sort(arr, begin, end) {
-    for (let i = begin; i < end; ++i){
-		for (let j = i; j > begin && compare(arr, j, j-1) <0; --j)
-			exchange(arr,j,j-1);
-    }
-}
-
-function partition(arr, begin, end){
-	if(begin == end) return;
-
-	let l = begin+1;
-	let r = end;
-
-	while(l<r){
-		while(l < r && compare(arr, l  , begin)<=0) l += 1;
-		while(l < r && compare(arr, r-1, begin)> 0) r -= 1;
-		if(l < r) {
-			exchange(arr, l, r-1);
-			l += 1;
-			r -= 1;
-		}
-	}
-
-	exchange(arr, begin, l-1);
-
-	return l-1;
-}
-
 // Quicksort
 function sort (arr, begin, end) {
-	if(end-begin <= 8){
-		insertion_sort(arr,begin,end);
+	if(end-begin < 2)
 		return;
-	}
 
-	let cut = partition(arr, begin, end);
-	sort(arr, begin, cut);
-	sort(arr, cut+1, end);
+	let cut = partition(arr, begin+1, end, it => compare(arr, it, begin) <= 0);
+
+	exchange(arr, begin, cut-1);
+	sort(arr, begin, cut-1);
+	sort(arr, cut, end);
 }
 
 function main()
