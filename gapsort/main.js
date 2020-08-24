@@ -38,21 +38,17 @@ function expand(arr, begin, end){
 function gapped_binary_search(arr, begin, end, value_pos){
     let n = (end - begin) >> 1;
 
-    let a = 0;
-    let b = n;
+	let l = 0;
+	let r = n;
+	while(l != r){
+		let m = (l+r)>>1;
+		if(compare(arr, value_pos, begin+m*2)<0)
+			r = m;
+		else
+			l = m+1;
+	}
 
-    // upper_bound
-    while(a!=b){
-        let m = (a+b) >> 1;
-
-        if(compare(arr,begin+m*2,value_pos) <= 0){
-            a = m+1;
-        }else{
-            b = m;
-        }
-    }
-
-    return begin + a * 2 - 1;
+	return begin+Math.max(0,2*l-1);
 }
 
 // Gapsort
@@ -63,96 +59,76 @@ function sort (arr, begin, end) {
     insertion_sort(arr, begin, begin+sorted);
 	if(n == sorted) return;
 
-    while(sorted + sorted <= n){
-        expand(arr, begin, begin+sorted);
-        sorted += sorted;
+	while(sorted != n){
+		expand(arr, begin, begin+sorted);
 
-        let it = begin+1;
-        let last = -1;
-		let oklo = -1;
-		let okhi = -1;
-		highlight(arr, oklo, okhi);
+		for(let i = 0; i < sorted; ++i){
+			let j = begin + i*2+1;
 
-		while(it < begin+sorted){
 
-			if(oklo < it && it < okhi){
-				console.log("skipped about", okhi - it, "spots");
-				it = okhi-1;
-				oklo = okhi = -1;
-				highlight(arr, oklo, okhi);
-			}
+			let prev_try = null;
 
-			let pos = null;
-			if((compare(arr,it,it-1)<0)){ // should be behind its current position
-				pos = Math.max(0, gapped_binary_search(arr, begin, it-1, it));
+			while(1){
 
-			}else if(it != end-1 && compare(arr,it,it+1)>=0){ // should be beyond its current position
-				pos = gapped_binary_search(arr, it+1, begin+sorted, it);
+				// already in the right place
+				if (compare(arr, j-1, j) < 0 &&
+					(j+1 == begin+2*sorted ||
+						compare(arr, j, j+1, begin+2*sorted) < 0))
+					break;
 
-			}else{
-				last = it;
-				it += 2;
-				continue;
-			}
+				let out = gapped_binary_search(
+					arr, begin, begin+2*sorted, j);
 
-			//let pos = Math.max(0, gapped_binary_search(arr, begin, begin+sorted, it));
-			
-			if(pos != last){
-				exchange(arr, it, pos);
-				last = pos;
-				continue;
-			}
-
-			if(it < pos){
-
-				if(compare(arr,it,pos)>0)
-					exchange(arr,it,pos)
-
-				let i = pos-1;
-				for(; i > it; i -= 2)
-					if(oklo <= i&&i < okhi){
-						console.log("saved about", i-oklo, "comparisons");
-						i = oklo;
-					} else
-						if(compare(arr, i-1, i)>0 || compare(arr,i-2,i-1)>0)
-							break;
-
-				if(oklo < pos && pos < okhi){
-					oklo = i+1;
-					highlight(arr, oklo, okhi);
-				} else if (oklo < i && i < okhi && okhi < pos) {
-					okhi = pos;
-					highlight(arr, oklo, okhi);
-				} else if(pos - (i+1) >= okhi - oklo){
-					oklo = i+1;
-					okhi = pos;
-					highlight(arr, oklo, okhi);
+				// if it is before, just insert backwards
+				if (out < j) {
+					// be careful with the element that's
+					// already there
+					if(compare(arr, j, out) > 0)
+						out += 1;
+					for (let k = j; k > out; --k)
+						exchange(arr, k, k-1);
+					break;
 				}
 
-				exchange(arr, i-1, it);
+				// if it is after, and there is no conflict,
+				// just put it right where it wants to go
+				if(prev_try === null || out !== prev_try){
+					exchange(arr, j, out);
+					prev_try = out;
+					continue;
+				}
 
-				for(let j = i-1; j < pos-1; ++j)
-					exchange(arr, j, j+1);
+				// if we know both elements want to be in
+				// the same position, we need to scan
+				// backwards for an element that's out of
+				// place.
+				let hole = out-2;
+				while (j < hole &&
+					(hole+1 == begin+2*sorted ||
+						compare(arr, hole, hole+1) < 0) &&
+					compare(arr, hole-1, hole) < 0)
+					hole -= 2;
 
-			} else {
+				exchange(arr, j, hole);
 
-				if(compare(arr, it, pos)<0)
-					exchange(arr, it, pos);
+				let end = out;
+				if(compare(arr,hole,out)<0)
+					end -= 1;
 
-				let i = pos+1;
-				for(; i < it-1; i += 2);
+				for(let i = hole; i < end; ++i)
+					exchange(arr, i, i+1);
 
-				exchange(arr, i+1, it);
-
-				for(let j = i+1; j > pos+1; --j)
-					exchange(arr, j, j-1);
+				// we might be able to do something better
+				// with this, which could save us a few
+				// comparisons in the next iteration.
+				// It's kinda hard to reason about, so I'm
+				// just letting it forget the last operation
+				prev_try = null;
 			}
-
 		}
-    }
 
-
-	sort(arr, begin+sorted, end);
+		sorted += sorted;
+	}
 }
 
 
