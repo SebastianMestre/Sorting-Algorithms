@@ -2,7 +2,7 @@ const step = 1;
 const delay = 0;
 
 function main() {
-	const n = 5**3;
+	const n = 256;
 
 	let arr = make_array(n);
 	shuffle(arr);
