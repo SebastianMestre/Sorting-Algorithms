@@ -1,37 +1,42 @@
 const step = 1;
 const delay = 0;
 
-function medianofthree (arr, a, b, c) {
-    if(compare(arr, a, b) > 0)
-        exchange(arr, a, b);
-    if(compare(arr, b, c) > 0)
-        exchange(arr, b, c);
-    if(compare(arr, a, b) > 0)
-        exchange(arr, a, b);
+function deterministic_select (arr, begin, end, k) {
+	while (1){
+		if(end-begin <= 1) return;
+		let n = end - begin;
+		let groupCount = (n/5) | 0;
+
+		let i = 0;
+		for(let j = 0; j+5 <= n; j += 5, i += 1){
+			insertion_sort(arr, begin+j, begin+j+5);
+			exchange(arr, begin+i, begin+j+2);
+		}
+
+		deterministic_select(arr, begin, begin+i, i>>1);
+		exchange(arr, begin, begin+(i>>1));
+		let cut = partition(
+			arr, begin+1, end, it => compare(arr, it, begin) <= 0);
+		exchange(arr, begin, cut-1);
+
+		const pivot_idx = cut-1-begin;
+		if (pivot_idx < k) {
+			k -= cut-begin;
+			begin = cut;
+		} else {
+			end = cut;
+		}
+	}
 }
 
-function sort (arr, begin, end) {
-    if(begin == end) return;
-    let n = end - begin;
-    let nover3 = (n/3) | 0;
-
-    for(let i = 0; i < nover3; ++i){
-        medianofthree(arr, begin+i, begin+i+nover3, begin+i+nover3+nover3);
-    }
-
-    let piv = sort(arr, begin+nover3, begin+nover3+nover3);
-
-}
-
-function main()
-{
-	const n = 256;
+function main() {
+	const n = 5**3;
 
 	let arr = make_array(n);
 	shuffle(arr);
 
 	init(arr);
-    sort(arr, 0, n);
+	deterministic_select(arr, 0, n, n>>1);
 	init(arr);
 
 	playAnim();
