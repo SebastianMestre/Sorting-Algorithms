@@ -5,6 +5,7 @@
 			body {
 				width: 60ch;
 				margin: 0 auto;
+				font-family: 'Roboto', sans-serif;
 			}
 			h1, h2, h3 {
 				font-family: 'Fira Sans', sans-serif;
@@ -30,7 +31,6 @@
 				border-radius: 2px;
 				border: 1px solid #eee;
 				font-size: 10pt;
-				font-family: 'Roboto', sans-serif;
 				line-height: 1.6em;
 			}
 		</style>
@@ -42,7 +42,38 @@
 			<li><a href="inplacemerge/index.html">in-place mergesort</a></li>
 			<li><a href="selectionsort/index.html">selection sort</a></li>
 			<li><a href="mergesort/index.html">merge sort</a></li>
-			<li><a href="median/index.html">median of array</a></li>
+			<li>
+				<a href="median/index.html">median of array (quickselect + median of medians)</a>
+				<span class="expand-on-hover">
+					...
+					<div class="expand-on-hover-card">
+						<h3>Quickselect</h3>
+
+						<p>
+						Quickselect is a divide and conquer algorithm. It finds the k-th
+						element in an array (for some given k) in average linear time.
+						</p>
+						<p>
+						It achieves this by partitioning the array around a pivot, counting
+						how many elements are left on each side, and discarding the side
+						that doesn't contain the k-th element
+						</p>
+
+						<h3>Median of Medians</h3>
+
+						<p>
+						The median of medians algorithm is an approximate median-finding
+						algorithm. It can be used it to discard large portions of an array
+						when searching for the exact median, thus speeding up the search.
+						</p>
+						<p>
+						In this case, we use the Quickselect algorithm, and enhance it by
+						choosing pivots using the median of medians algorithm, which gives
+						it worse case linear time, instead of just average.
+						</p>
+					</div>
+				</span>
+			</li>
 			<li>
 				<a href="quicksort/index.html">Quicksort</a>
 				<span class="expand-on-hover">
