@@ -13,17 +13,30 @@
 			.expand-on-hover {
 				position: relative;
 			}
-			.expand-on-hover:hover .expand-on-hover-card {
+			.expand-on-hover:hover .expand-on-hover-wrapper {
 				opacity: 1;
+				bottom: 3em;
 			}
-			.expand-on-hover-card {
+			.expand-on-hover-wrapper {
 				pointer-events: none;
 
-				position: absolute;
-				top: 1.5em;
-				left: -3em;
+				position: fixed;
+				left: 0;
+				right: 0;
+				bottom: -3em;
+				padding: 0;
+
 				opacity: 0;
-				transition: opacity 0.3s;
+				transition: opacity 0.3s, bottom 0.3s;
+				background: transparent;
+
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+			}
+			.expand-on-hover-content {
+				margin: 0 auto;
+
 				width: 30em;
 				background: white;
 				padding: 1em;
@@ -46,7 +59,8 @@
 				<a href="median/index.html">median of array (quickselect + median of medians)</a>
 				<span class="expand-on-hover">
 					...
-					<div class="expand-on-hover-card">
+					<div class="expand-on-hover-wrapper">
+					<div class="expand-on-hover-content">
 						<h3>Quickselect</h3>
 
 						<p>
@@ -72,13 +86,15 @@
 						it worse case linear time, instead of just average.
 						</p>
 					</div>
+					</div>
 				</span>
 			</li>
 			<li>
 				<a href="quicksort/index.html">Quicksort</a>
 				<span class="expand-on-hover">
 					...
-					<div class="expand-on-hover-card">
+					<div class="expand-on-hover-wrapper">
+					<div class="expand-on-hover-content">
 						<h3>Quicksort</h3>
 						
 						Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. The steps are:
@@ -90,17 +106,20 @@
 
 						</ol>
 					</div>
+					</div>
 				</span>
 			</li>
 			<li>
 				<a href="deterministic_quicksort/index.html">Deterministic Quicksort</a>
 				<span class="expand-on-hover">
 					...
-					<div class="expand-on-hover-card">
+					<div class="expand-on-hover-wrapper">
+					<div class="expand-on-hover-content">
 						<h3>Deterministic Quicksort</h3>
 
 						Like quicksort, but uses the "Median of Medians" algorithm to pick
 						a pivot. This guarantees the O(n log(n)) runtime.
+					</div>
 					</div>
 				</span>
 			</li>
