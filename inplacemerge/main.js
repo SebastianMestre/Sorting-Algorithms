@@ -1,17 +1,14 @@
 const step = 1;
 const delay = 0;
 
-function lower (arr, from, to, val) { 
-	let len = to - from;
-	let half; 
-	while (len > 0) { 
-		half = (len/2)|0; 
-		let mid= from + half; 
-		if (compare (arr, mid, val) < 0) { 
-			from = mid+1; 
-			len = len - half -1; 
-		} else len = half; 
-	} 
+function lower (arr, from, to, val) {
+	while (from < to) {
+		const mid = (from + to) >> 1;
+		if (compare(arr, mid, val) < 0)
+			from = mid + 1;
+		else
+			to = mid;
+	}
 	return from; 
 } 
 
