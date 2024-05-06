@@ -8,7 +8,7 @@ function gapped_insertion_sort (arr, begin, end, gap) {
 
 // Gapsort
 function sort (arr, begin, end) {
-	const gaps = [1]; // 701,301,132,57,23,10,4,1];
+	const gaps = [701,301,132,57,23,10,4,1];
 
 	for(const gap of gaps)
 		gapped_insertion_sort(arr, begin, end, gap);
