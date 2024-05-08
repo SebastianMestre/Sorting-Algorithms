@@ -51,12 +51,36 @@
 	<body>
 		<h1>Sorting Algorithms</h1>
 		<ul>
-			<li><a href="gapsort/index.html">gapsort</a></li>
-			<li><a href="inplacemerge/index.html">in-place mergesort</a></li>
-			<li><a href="selectionsort/index.html">selection sort</a></li>
-			<li><a href="mergesort/index.html">merge sort</a></li>
+			<li><a href="insertionsort/index.html">Insertion sort</a></li>
+			<li><a href="shellsort/index.html">Shell sort</a></li>
+			<li><a href="gapsort/index.html">Gap sort</a></li>
+			<hr>
+			<li><a href="mergesort/index.html">Merge sort</a></li>
+			<li><a href="inplacemerge/index.html">In-place mergesort</a></li>
+			<li><a href="weavesort/index.html">Weave sort</a></li>
+			<hr>
 			<li>
-				<a href="median/index.html">median of array (quickselect + median of medians)</a>
+				<a href="quicksort/index.html">Quicksort</a>
+				<span class="expand-on-hover">
+					...
+					<div class="expand-on-hover-wrapper">
+					<div class="expand-on-hover-content">
+						<h3>Quicksort</h3>
+						
+						Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. The steps are:
+
+						<ol>
+							<li> Pick an element, called a pivot, from the array. </li>
+							<li> Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it. </li>
+							<li> Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values. </li>
+
+						</ol>
+					</div>
+					</div>
+				</span>
+			</li>
+			<li>
+				<a href="median/index.html">Median of array (quickselect + median of medians)</a>
 				<span class="expand-on-hover">
 					...
 					<div class="expand-on-hover-wrapper">
@@ -90,26 +114,6 @@
 				</span>
 			</li>
 			<li>
-				<a href="quicksort/index.html">Quicksort</a>
-				<span class="expand-on-hover">
-					...
-					<div class="expand-on-hover-wrapper">
-					<div class="expand-on-hover-content">
-						<h3>Quicksort</h3>
-						
-						Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. The steps are:
-
-						<ol>
-							<li> Pick an element, called a pivot, from the array. </li>
-							<li> Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it. </li>
-							<li> Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values. </li>
-
-						</ol>
-					</div>
-					</div>
-				</span>
-			</li>
-			<li>
 				<a href="deterministic_quicksort/index.html">Deterministic Quicksort</a>
 				<span class="expand-on-hover">
 					...
@@ -123,9 +127,10 @@
 					</div>
 				</span>
 			</li>
-			<li><a href="shellsort/index.html">shellsort</a></li>
+			<hr>
+			<li><a href="selectionsort/index.html">selection sort</a></li>
+			<li><a href="heapsort/index.html">heapsort</a></li>
 			<li><a href="smoothsort/index.html">smoothsort</a></li>
-			<li><a href="weavesort/index.html">weavesort</a></li>
 		</ul>
 		<h2>What is this?</h2>
 		<p>

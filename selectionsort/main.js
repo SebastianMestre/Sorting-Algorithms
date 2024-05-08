@@ -2,15 +2,14 @@ const step = 1;
 const delay = 0;
 
 function sort(arr, begin, end) {
-	if(begin >= end) return;
-	for (let j = begin; j != end; ++j){
-		let min_idx = j;
-		for (let i = j; i != end; ++i){
-			if (compare(arr,i,min_idx)<0){
-				min_idx = i;
+	while (begin < end) {
+		let max_idx = begin;
+		for (let i = begin; i != end; ++i) {
+			if (compare(arr, i, max_idx) > 0) {
+				max_idx = i;
 			}
 		}
-		exchange(arr, j, min_idx);
+		exchange(arr, max_idx, --end);
 	}
 }
 

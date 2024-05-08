@@ -1,7 +1,7 @@
 const step = 1;
 const delay = 0;
 
-// Quicksort
+// Quicksort (deterministic-nlogn-time pivot selection)
 function sort (arr, begin, end) {
 	if(end-begin < 2)
 		return;
